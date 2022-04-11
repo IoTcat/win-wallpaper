@@ -1,4 +1,4 @@
-Dim fs, http, strm, ws, PREFIX, FOLDER, PATH, LIMIT, POS, DELAY
+Dim fs, http, strm, ws, PREFIX, FOLDER, PATH, LIMIT, POS, DELAY, HOSTNAME
 
 Set fs = CreateObject("Scripting.FileSystemObject")
 Set ws = CreateObject("WScript.Shell")
@@ -8,12 +8,14 @@ Set strm = createobject("Adodb.Stream")
 LIMIT = 30
 POS = 0.2
 DELAY = 0
+HOSTNAME = "api.yimian.xyz"
 PREFIX = ws.expandenvironmentstrings("%userprofile%") & "\Pictures"
 FOLDER = "Wallpaper"
 
 PATH = PREFIX & "\" & FOLDER
 
-wscript.sleep DELAY
+WScript.sleep DELAY
+
 
 If Not fs.FolderExists(PREFIX) Then 
 	fs.CreateFolder(PREFIX)
@@ -42,7 +44,7 @@ If LIMIT < fs.GetFolder(PATH).files.Count Then
 End If
 
 
-
+On Error Resume Next 
 http.Open "GET", "https://api.yimian.xyz/img/?type=wallpaper&from=win-wallpaper", False
 http.Send
 
