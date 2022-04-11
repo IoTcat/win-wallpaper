@@ -7,7 +7,7 @@ Set strm = createobject("Adodb.Stream")
 
 LIMIT = 30
 POS = 0.2
-DELAY = 10000
+DELAY = 0
 PREFIX = ws.expandenvironmentstrings("%userprofile%") & "\Pictures"
 FOLDER = "Wallpaper"
 
@@ -43,7 +43,7 @@ End If
 
 
 
-http.Open "GET", "https://api.yimian.xyz/img/?type=wallpaper", False
+http.Open "GET", "https://api.yimian.xyz/img/?type=wallpaper&from=win-wallpaper", False
 http.Send
 
 with strm
